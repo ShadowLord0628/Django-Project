@@ -26,6 +26,6 @@ try:
         path("admin/", admin.site.urls),
         path("tweet/", include("tweet.urls")),
         path("accounts/", include('django.contrib.auth.urls'))
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ]
 except Exception as e:
     print(f"Error in urlpatterns: {e}")
