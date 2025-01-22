@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tweet",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -133,10 +134,25 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Media Configuration
-MEDIA_URL = "/media/"
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = '/accounts/login/'
 
 LOGIN_REDIRECT_URL = '/tweet/'
 LOGOUT_REDIRECT_URL = '/tweet/tweet_list/'
+
+
+AWS_ACCESS_KEY_ID = 'AKIAU5LH5U7ACU5FPCN2'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'djangotweet'
+AWS_S3_SIGNATURE_NAME = 's3v4'
+AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/media/'
